@@ -49,7 +49,17 @@ jobs:
         env:
           TZ: UTC
 
-      - name: Construir
+      - name: Navegadores de Playwright
+        run: npx playwright install --with-deps chromium
+
+      # Los e2e van ANTES del build de producción, y el orden importa: para
+      # previsualizar, Playwright ejecuta su propio `npm run build` con
+      # base '/' y el driver local. Si corrieran después, lo que se publicaría
+      # sería el build de las pruebas, con las rutas rotas y sin Supabase.
+      - name: Pruebas end-to-end
+        run: npm run test:e2e
+
+      - name: Construir para producción
         run: npm run build
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
@@ -57,14 +67,7 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
           VITE_DATA_DRIVER: supabase
 
-      - name: Navegadores de Playwright
-        run: npx playwright install --with-deps chromium
-
-      # Los e2e corren contra el driver local: herméticos, sin tocar Supabase.
-      - name: Pruebas end-to-end
-        run: npm run test:e2e
-
-      # Después de construir, para que también revise el bundle.
+      # Después de construir, para que también revise el bundle que se publica.
       - name: Que no se haya colado una llave de servicio
         run: npm run check:secrets
 
