@@ -65,18 +65,38 @@ dominio, y 21 end-to-end incluyendo `axe` sin violaciones en las tres vistas.
    Lo destapó una prueba intermitente de `axe`; perseguir la intermitencia era
    perseguir un bug real.
 
+**Fase 5 — Supabase y publicación.** Migración idempotente con RLS, adaptador
+de Supabase tras el mismo puerto, auth con PKCE, y CI que verifica y publica.
+
+**El sitio está en vivo:** https://annammp.github.io/dashboard-conceptos/
+Repo: https://github.com/annammp/dashboard-conceptos
+
+Corriendo con el driver local hasta que se configuren las variables de
+Supabase; en cuanto existan, el contenedor cambia de adaptador solo.
+
+### Dos bugs del despliegue (ver ADR 0006 y 0007)
+
+1. **El escaneo de secretos buscaba la palabra equivocada**: se encontraba a sí
+   mismo en la documentación y en el SDK, y no habría detectado una llave real,
+   porque el rol va codificado dentro del JWT.
+2. **Se publicaba el build de las pruebas**: Playwright reconstruye `dist/` con
+   base `/` para previsualizar, y corría después del build de producción.
+
 ## Siguiente paso
 
-Adaptador de Supabase + auth PKCE + tiempo real, y despliegue a Pages.
-Todo lo demás está hecho.
+Nada pendiente del lado del código. Falta lo que depende de Ana (abajo).
 
 ## Pendientes que dependen de Ana
 
-1. `gh auth login` en la terminal (flujo del navegador; nadie más ve el token).
+1. ~~`gh auth login`~~ — hecho, autenticada como `annammp`.
 2. Crear el proyecto en supabase.com, correr `supabase/migrations/0001_init.sql`
    y desactivar "Allow new users to sign up" en Auth.
-3. Pegar Project URL y anon key en `.env.local`.
+3. Pegar Project URL y anon key en `.env.local` para desarrollo, y como
+   **variables** del repo (`SUPABASE_URL`, `SUPABASE_ANON_KEY`) para producción:
+   `gh variable set SUPABASE_URL --body "..."`.
 4. Insertar su `user_id` en la tabla `writers` para poder escribir.
+5. Registrar `https://annammp.github.io/dashboard-conceptos/` en
+   Authentication → URL Configuration → Redirect URLs.
 
 ## Decisiones abiertas
 
