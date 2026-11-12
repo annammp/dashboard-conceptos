@@ -560,3 +560,168 @@
     font-size: 2.25rem;
   }
 }
+
+/* ---------- Tarjetas genéricas ---------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: 1rem;
+}
+
+.nota {
+  font-size: 0.8125rem;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------- Gráfica ---------- */
+
+.grafica {
+  width: 100%;
+  height: auto;
+}
+
+.grafica__eje {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.grafica__barra {
+  fill: var(--color-secondary);
+}
+
+.grafica__barra--ok {
+  fill: var(--color-entregado);
+}
+
+/* Trama además del color: el día cumplido no se distingue solo por tono. */
+.grafica__trama {
+  stroke: var(--color-card);
+  stroke-width: 2;
+}
+
+.grafica__meta {
+  stroke: var(--color-foreground);
+  stroke-width: 2;
+  stroke-dasharray: 3 2;
+}
+
+.grafica__etiqueta {
+  font-size: 11px;
+  fill: var(--color-muted-foreground);
+}
+
+.detalle-datos summary {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+}
+
+.tabla-datos {
+  width: 100%;
+  margin-top: var(--space-3);
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.tabla-datos caption {
+  padding-bottom: var(--space-2);
+  color: var(--color-muted-foreground);
+  text-align: left;
+}
+
+.tabla-datos th,
+.tabla-datos td {
+  padding: var(--space-2);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tabla-datos td {
+  text-align: right;
+}
+
+.exportar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exportar__texto {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
+
+/* ---------- Ajustes ---------- */
+
+.editor-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.editor-row,
+.alta-editor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-end;
+  padding: var(--space-3);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.alta-editor {
+  border-style: dashed;
+}
+
+.editor-row--inactivo {
+  opacity: 0.6;
+}
+
+.editor-row__nombre {
+  flex: 1 1 12rem;
+}
+
+.field__input--ancho {
+  width: 100%;
+}
+
+.meta-equipo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.meta-equipo__check {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.meta-equipo__texto {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
+}
