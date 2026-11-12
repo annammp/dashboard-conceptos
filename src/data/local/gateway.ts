@@ -42,6 +42,23 @@ export const createLocalGateway = (options: LocalGatewayOptions): DataGateway =>
     emit: realtime.emit,
   };
 
+  /*
+   * Puente entre pestañas. Cuando otra pestaña escribe, hay que **releer** el
+   * almacenamiento antes de avisar: si solo emitiéramos la invalidación, esta
+   * pestaña recargaría desde su propia copia en memoria —la vieja— y el cambio
+   * nunca aparecería. Es el mismo camino que usará el tiempo real de Supabase,
+   * porque ambos entran por el mismo puerto.
+   */
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', (event: StorageEvent) => {
+      if (event.key !== STORAGE_KEY) return;
+      const fresh = persistence.read();
+      if (!isLocalDb(fresh)) return;
+      current = fresh;
+      realtime.emit({ entity: 'all', op: 'invalidate' });
+    });
+  }
+
   const deps: LocalDeps = { ids: options.ids, clock: options.clock };
 
   return {

@@ -20,7 +20,7 @@ export const QuickAddBar = ({ editors, onAdd }: QuickAddBarProps) => (
           <span className="quickadd__nombre">{editor.name}</span>
           <Button
             variant="primary"
-            aria-label={`Agregar un concepto a ${editor.name}`}
+            aria-label={`+1 concepto para ${editor.name}`}
             onClick={() => {
               onAdd(editor.id, 1);
             }}
@@ -28,7 +28,7 @@ export const QuickAddBar = ({ editors, onAdd }: QuickAddBarProps) => (
             +1
           </Button>
           <Button
-            aria-label={`Agregar cuatro conceptos a ${editor.name}`}
+            aria-label={`+4 conceptos para ${editor.name}`}
             onClick={() => {
               onAdd(editor.id, 4);
             }}

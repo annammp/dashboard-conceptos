@@ -10,9 +10,16 @@
 :root {
   --color-primary: #1e40af;
   --color-on-primary: #ffffff;
+  /*
+   * El hover OSCURECE. Aclararlo al secundario dejaba texto blanco sobre
+   * #3b82f6: 3.1:1, por debajo del mínimo AA. Este da 11.8:1.
+   */
+  --color-primary-hover: #17317f;
   --color-secondary: #3b82f6;
   --color-accent: #d97706;
   --color-on-accent: #000000;
+  /* El ámbar de marca sobre fondo ámbar claro da 2.86:1. Este da 6.4:1. */
+  --color-accent-text: #92400e;
 
   --color-background: #f8fafc;
   --color-foreground: #1e3a8a;
@@ -62,9 +69,12 @@
   :root:not([data-theme='light']) {
     --color-primary: #60a5fa;
     --color-on-primary: #0b1220;
+    /* En oscuro el primario es claro con texto oscuro: aquí el hover aclara. */
+    --color-primary-hover: #93c5fd;
     --color-secondary: #93c5fd;
     --color-accent: #fbbf24;
     --color-on-accent: #1c1206;
+    --color-accent-text: #fcd34d;
 
     --color-background: #0b1220;
     --color-foreground: #e2e8f0;

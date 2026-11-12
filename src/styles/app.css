@@ -59,7 +59,7 @@
 }
 
 .chip--warn {
-  color: var(--color-ajustes);
+  color: var(--color-accent-text);
   background: var(--color-ajustes-soft);
 }
 
@@ -74,7 +74,6 @@
   background: none;
   border: 0;
   border-radius: var(--radius-md);
-  transition: background var(--duration) var(--ease), color var(--duration) var(--ease);
 }
 
 .tabs__tab:hover {
@@ -114,8 +113,8 @@
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
 }
 
 .btn--ghost {
@@ -279,7 +278,7 @@
 .equipo__aliento {
   padding: var(--space-3);
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   background: var(--color-ajustes-soft);
   border-radius: var(--radius-md);
 }
@@ -370,7 +369,7 @@
 }
 
 .aliento--push {
-  color: var(--color-ajustes);
+  color: var(--color-accent-text);
   background: var(--color-ajustes-soft);
 }
 

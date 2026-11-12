@@ -44,12 +44,31 @@ Verificado en el navegador: registrar 4 conceptos y entregarlos lleva al Editor 
 a 4/4 con "¡Meta cumplida!" y al equipo a 4/8 con la frase de medio camino. Los
 datos sobreviven a recargar.
 
+**Fase 4 — historial, ajustes y pruebas end-to-end.** Gráfica de tendencia en
+SVG a mano con tabla equivalente, exportar CSV con BOM, editores configurables
+y meta de equipo. 21 pruebas end-to-end con Playwright contra el driver local,
+con reloj y zona horaria fijos.
+
+**Estado del gate:** `npm run verify` en verde dos veces seguidas — lint,
+typecheck, 8 fronteras, 188 pruebas unitarias con 100 % de cobertura del
+dominio, y 21 end-to-end incluyendo `axe` sin violaciones en las tres vistas.
+
+### Tres bugs que encontraron las pruebas
+
+1. **Duplicación al crear**: la acción agregaba la fila además del eco del
+   tiempo real. Las inserciones ahora son upsert idempotente.
+2. **Sincronización entre pestañas rota**: el adaptador local avisaba del
+   cambio pero no releía el almacenamiento, así que la otra pestaña recargaba
+   su propia copia vieja. Ahora relee antes de emitir la invalidación.
+3. **Contraste del hover primario**: al pasar el cursor, el azul se aclaraba a
+   `#3b82f6` y el texto blanco caía a 3.1:1. El hover ahora oscurece (11.8:1).
+   Lo destapó una prueba intermitente de `axe`; perseguir la intermitencia era
+   perseguir un bug real.
+
 ## Siguiente paso
 
-1. Vista Historial con la gráfica de tendencia (SVG a mano) y exportar CSV.
-2. Vista Ajustes: editores configurables y meta de equipo.
-3. Suite end-to-end con Playwright (los 10 recorridos).
-4. Adaptador de Supabase + auth PKCE, y despliegue a Pages.
+Adaptador de Supabase + auth PKCE + tiempo real, y despliegue a Pages.
+Todo lo demás está hecho.
 
 ## Pendientes que dependen de Ana
 

@@ -12,6 +12,10 @@ export default defineConfig({
   reporter: isCI ? [['html'], ['github']] : [['html', { open: 'never' }]],
   use: {
     baseURL: `http://localhost:${PORT}`,
+    // Zona y locale fijos: con el reloj fijado en las fixtures, "hoy" es
+    // siempre el mismo día y las pruebas no se rompen a medianoche.
+    timezoneId: 'America/Mexico_City',
+    locale: 'es-MX',
     // Diagnóstico solo cuando falla: una suite verde no deja basura.
     trace: 'on-first-retry',
     video: 'retain-on-failure',
