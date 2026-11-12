@@ -4,17 +4,24 @@
  * y en ningún otro sitio.
  */
 
-import { readEnv } from './config/env';
+import { readEnv, type Env } from './config/env';
 import { createLocalGateway } from './data/local/gateway';
+import { createSupabaseGateway } from './data/supabase/gateway';
 import { systemClock, systemIds } from './data/system';
 import { createDashboard, type Dashboard } from './state/dashboardStore';
 import type { DataGateway } from './ports';
 
-const createGateway = (): DataGateway =>
-  // El adaptador de Supabase se enchufa aquí cuando el proyecto esté creado.
-  createLocalGateway({ ids: systemIds, clock: systemClock });
+/**
+ * Sin credenciales de Supabase, `readEnv` ya devolvió el driver local: la app
+ * arranca y se puede usar igual, guardando en el navegador. Así el despliegue
+ * nunca queda en pantalla blanca por una variable que falta.
+ */
+const createGateway = (env: Env): DataGateway =>
+  env.driver === 'supabase'
+    ? createSupabaseGateway({ url: env.supabaseUrl, anonKey: env.supabaseAnonKey })
+    : createLocalGateway({ ids: systemIds, clock: systemClock });
 
 export const createApp = (): Dashboard => {
-  readEnv();
-  return createDashboard({ gateway: createGateway(), clock: systemClock });
+  const env = readEnv();
+  return createDashboard({ gateway: createGateway(env), clock: systemClock });
 };
