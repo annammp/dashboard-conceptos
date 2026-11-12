@@ -31,10 +31,25 @@ Playwright configurados. El dominio completo y probado:
 8 fronteras verificadas, 142 pruebas y **100 % de cobertura** del dominio
 (líneas, ramas, funciones y sentencias).
 
+**Fase 2 — datos y estado.** Puertos, adaptador local sobre `localStorage` con
+puente entre pestañas, suite de contrato (20 casos) y el store observable con
+acciones optimistas y reversión.
+
+**Fase 3 — UI del día.** Vista "Hoy" funcionando sobre el driver local:
+navegación por fecha, progreso por editor y de equipo, banner de aliento,
+registro rápido (+1 / +4) y tablero de tres columnas. Tokens del design system
+con modo claro y oscuro.
+
+Verificado en el navegador: registrar 4 conceptos y entregarlos lleva al Editor 1
+a 4/4 con "¡Meta cumplida!" y al equipo a 4/8 con la frase de medio camino. Los
+datos sobreviven a recargar.
+
 ## Siguiente paso
 
-Puertos (`src/ports/`) y adaptador local (`src/data/local/`) con la suite de
-contrato `src/test/gatewayContract.ts`, para que la app corra end-to-end sin red.
+1. Vista Historial con la gráfica de tendencia (SVG a mano) y exportar CSV.
+2. Vista Ajustes: editores configurables y meta de equipo.
+3. Suite end-to-end con Playwright (los 10 recorridos).
+4. Adaptador de Supabase + auth PKCE, y despliegue a Pages.
 
 ## Pendientes que dependen de Ana
 

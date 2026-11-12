@@ -162,6 +162,11 @@ export default tseslint.config(
   },
 
   // Las pruebas pueden ser más largas y repetitivas: ahí la claridad gana.
+  //
+  // También quedan fuera de las fronteras entre capas, y a propósito: una
+  // prueba de integración del store necesita un gateway de verdad. La garantía
+  // arquitectónica es sobre el código que se publica, y `check-boundaries.sh`
+  // la verifica sobre ese código.
   {
     files: ['src/**/*.test.ts', 'src/**/*.dom.test.tsx', 'e2e/**/*.ts'],
     rules: {
@@ -169,6 +174,7 @@ export default tseslint.config(
       'max-params': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       'no-restricted-syntax': 'off',
+      'no-restricted-imports': 'off',
     },
   },
 

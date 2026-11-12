@@ -1,0 +1,101 @@
+/*
+ * Tokens del design system (ui-ux-pro-max: Minimalism & Swiss Style,
+ * "blue data + amber highlights", densidad 8/10 para dashboard).
+ * Ver design-system/dashboard-de-conceptos/MASTER.md
+ *
+ * Ningún componente escribe un color a mano: todo sale de aquí, y por eso el
+ * modo oscuro es solo redefinir estas variables.
+ */
+
+:root {
+  --color-primary: #1e40af;
+  --color-on-primary: #ffffff;
+  --color-secondary: #3b82f6;
+  --color-accent: #d97706;
+  --color-on-accent: #000000;
+
+  --color-background: #f8fafc;
+  --color-foreground: #1e3a8a;
+  --color-card: #ffffff;
+  --color-card-foreground: #1e3a8a;
+  --color-muted: #e9eef6;
+  --color-muted-foreground: #475569;
+  --color-border: #dbeafe;
+  --color-destructive: #dc2626;
+  --color-on-destructive: #ffffff;
+  --color-ring: #1e40af;
+
+  /* Estados del concepto. Nunca se usan solos: siempre van con texto e icono. */
+  --color-progreso: #475569;
+  --color-progreso-soft: #e9eef6;
+  --color-ajustes: #b45309;
+  --color-ajustes-soft: #fef3c7;
+  --color-entregado: #047857;
+  --color-entregado-soft: #d1fae5;
+
+  --font-sans: 'Fira Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, 'SF Mono', monospace;
+
+  /* Densidad 8/10: escala compacta, propia de un panel de datos. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 6%), 0 1px 3px rgb(15 23 42 / 4%);
+  --shadow-raised: 0 2px 8px rgb(15 23 42 / 10%);
+
+  /* Motion 2/10: perceptible, nunca protagonista. */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 180ms;
+
+  --max-width: 1180px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-primary: #60a5fa;
+    --color-on-primary: #0b1220;
+    --color-secondary: #93c5fd;
+    --color-accent: #fbbf24;
+    --color-on-accent: #1c1206;
+
+    --color-background: #0b1220;
+    --color-foreground: #e2e8f0;
+    --color-card: #121c2e;
+    --color-card-foreground: #e2e8f0;
+    --color-muted: #1b2740;
+    --color-muted-foreground: #94a3b8;
+    --color-border: #24334f;
+    --color-destructive: #f87171;
+    --color-on-destructive: #1a0a0a;
+    --color-ring: #60a5fa;
+
+    --color-progreso: #94a3b8;
+    --color-progreso-soft: #1b2740;
+    --color-ajustes: #fbbf24;
+    --color-ajustes-soft: #3a2c0c;
+    --color-entregado: #34d399;
+    --color-entregado-soft: #0c322a;
+
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 40%);
+    --shadow-raised: 0 2px 10px rgb(0 0 0 / 50%);
+  }
+}
+
+/* Motion 2/10 y respeto por quien pide menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
