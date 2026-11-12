@@ -14,8 +14,9 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "verify": "npm run lint && npm run typecheck && npm run check:boundaries && npm run test:coverage && npm run test:e2e",
-    "check:boundaries": "./scripts/check-boundaries.sh"
+    "verify": "npm run lint && npm run typecheck && npm run check:boundaries && npm run check:secrets && npm run test:coverage && npm run test:e2e",
+    "check:boundaries": "./scripts/check-boundaries.sh",
+    "check:secrets": "./scripts/check-secrets.sh"
   },
   "keywords": [],
   "author": "",

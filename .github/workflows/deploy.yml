@@ -49,15 +49,6 @@ jobs:
         env:
           TZ: UTC
 
-      - name: Que no se haya colado la service_role key
-        run: |
-          if grep -rIn --exclude-dir=node_modules --exclude-dir=.git \
-               -e 'service_role' -e 'SUPABASE_SERVICE' . ; then
-            echo "::error::Se encontró una referencia a service_role. Esa llave nunca va al repo."
-            exit 1
-          fi
-          echo "Sin rastros de service_role."
-
       - name: Construir
         run: npm run build
         env:
@@ -72,6 +63,10 @@ jobs:
       # Los e2e corren contra el driver local: herméticos, sin tocar Supabase.
       - name: Pruebas end-to-end
         run: npm run test:e2e
+
+      # Después de construir, para que también revise el bundle.
+      - name: Que no se haya colado una llave de servicio
+        run: npm run check:secrets
 
       - uses: actions/upload-artifact@v4
         if: failure()
